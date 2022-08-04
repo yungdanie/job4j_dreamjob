@@ -15,4 +15,9 @@ public class CandidateController {
         model.addAttribute("candidates", store.findAll());
         return "candidates";
     }
+
+    @GetMapping("/formAddCandidate")
+    public String addCandidate(Model model) {
+        return "addCandidate";
+    }
 }
