@@ -1,25 +1,26 @@
 package ru.job4j.dreamjob.model;
 
+import org.apache.tomcat.jni.Local;
+
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.text.SimpleDateFormat;
 import java.util.Objects;
 
 public class Post {
-
-    private final static SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     private final int id;
     private String name;
 
     private String description;
 
-    private Date created;
+    private LocalDateTime created;
 
     public Post(int id, String name) {
         this.id = id;
         this.name = name;
     }
 
-    public Post(int id, String name, String description, Date created) {
+    public Post(int id, String name, String description, LocalDateTime created) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -46,11 +47,11 @@ public class Post {
         this.description = description;
     }
 
-    public Date getCreated() {
+    public LocalDateTime getCreated() {
         return created;
     }
 
-    public void setCreated(Date created) {
+    public void setCreated(LocalDateTime created) {
         this.created = created;
     }
 

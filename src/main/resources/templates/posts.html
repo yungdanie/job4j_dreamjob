@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -49,7 +49,7 @@
                 <td th:text="${post.id}"></td>
                 <td th:text="${post.name}"></td>
                 <td th:text="${post.description}"></td>
-                <td th:text="${post.created}"></td>
+                <td th:text="${#temporals.format(post.created, 'dd-MM-yyyy HH:mm')}"></td>
             </tr>
             </tbody>
         </table>
