@@ -8,12 +8,15 @@ import java.text.SimpleDateFormat;
 import java.util.Objects;
 
 public class Post {
-    private final int id;
+    private int id;
     private String name;
 
     private String description;
 
     private LocalDateTime created;
+
+    public Post() {
+    }
 
     public Post(int id, String name) {
         this.id = id;
@@ -53,6 +56,10 @@ public class Post {
 
     public void setCreated(LocalDateTime created) {
         this.created = created;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     @Override
