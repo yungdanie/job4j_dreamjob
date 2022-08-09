@@ -35,6 +35,16 @@ public class PostStore {
         } while (!ATOMIC.compareAndSet(curr, incrCurr));
         post.setId(incrCurr);
         post.setCreated(LocalDateTime.now());
-        posts.put(incrCurr, post);
+        posts.putIfAbsent(incrCurr, post);
+    }
+
+    public Post findById(int id) {
+        return posts.get(id);
+    }
+
+    public void update(Post post) {
+        Post old = posts.get(post.getId());
+        post.setCreated(old.getCreated());
+        posts.put(old.getId(), post);
     }
 }
