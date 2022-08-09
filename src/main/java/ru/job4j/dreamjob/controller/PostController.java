@@ -23,7 +23,7 @@ public class PostController {
     }
 
     @GetMapping("/formAddPost")
-    public String formAddPost(Model model) {
+    public String formAddPost() {
         return "addPost";
     }
 

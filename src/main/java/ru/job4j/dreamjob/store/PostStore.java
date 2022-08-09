@@ -4,7 +4,6 @@ import ru.job4j.dreamjob.model.Post;
 
 import java.time.LocalDateTime;
 import java.util.Collection;
-import java.util.Date;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -12,8 +11,8 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class PostStore {
     private static final PostStore INST = new PostStore();
 
-    private static final AtomicInteger ATOMIC = new AtomicInteger(1);
-    private final Map<Integer, Post> posts = new ConcurrentHashMap<>();
+    private static final AtomicInteger ATOMIC = new AtomicInteger(0);
+    private final Map<Integer, Post> store = new ConcurrentHashMap<>();
 
     private PostStore() {
     }
@@ -23,7 +22,7 @@ public class PostStore {
     }
 
     public Collection<Post> findAll() {
-        return posts.values();
+        return store.values();
     }
 
     public void add(Post post) {
@@ -35,16 +34,16 @@ public class PostStore {
         } while (!ATOMIC.compareAndSet(curr, incrCurr));
         post.setId(incrCurr);
         post.setCreated(LocalDateTime.now());
-        posts.putIfAbsent(incrCurr, post);
+        store.putIfAbsent(incrCurr, post);
     }
 
     public Post findById(int id) {
-        return posts.get(id);
+        return store.get(id);
     }
 
     public void update(Post post) {
-        Post old = posts.get(post.getId());
-        post.setCreated(old.getCreated());
-        posts.put(old.getId(), post);
+        Post old = store.get(post.getId());
+        old.setName(post.getName());
+        old.setDescription(post.getDescription());
     }
 }
