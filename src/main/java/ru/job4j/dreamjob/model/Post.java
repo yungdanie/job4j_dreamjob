@@ -18,9 +18,9 @@ public class Post {
     public Post() {
     }
 
-    public Post(int id, String name) {
-        this.id = id;
+    public Post(String name, String description) {
         this.name = name;
+        this.description = description;
     }
 
     public Post(int id, String name, String description, LocalDateTime created) {
