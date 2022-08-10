@@ -29,21 +29,13 @@ public class CandidateStore {
     }
 
     public void add(Candidate candidate) {
-        int curr;
-        int incrCurr;
-        do {
-            curr = ATOMIC.get();
-            incrCurr = curr + 1;
-        } while (!ATOMIC.compareAndSet(curr, incrCurr));
-        candidate.setId(incrCurr);
+        candidate.setId(ATOMIC.incrementAndGet());
         candidate.setCreated(LocalDateTime.now());
-        store.putIfAbsent(incrCurr, candidate);
+        store.put(candidate.getId(), candidate);
     }
 
     public void update(Candidate candidate) {
-        Candidate old = store.get(candidate.getId());
-        old.setName(candidate.getName());
-        old.setDescription(candidate.getDescription());
+        store.replace(candidate.getId(), candidate);
     }
 
     public Candidate getById(int id) {
