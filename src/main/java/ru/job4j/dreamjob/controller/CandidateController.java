@@ -8,12 +8,16 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import ru.job4j.dreamjob.model.Candidate;
-import ru.job4j.dreamjob.store.CandidateStore;
+import ru.job4j.dreamjob.service.CandidateService;
 
 @Controller @ThreadSafe
 public class CandidateController {
 
-    private final CandidateStore store = CandidateStore.instOf();
+    private final CandidateService store;
+
+    public CandidateController(CandidateService candidateService) {
+        this.store = candidateService;
+    }
 
     @GetMapping("/candidates")
     public String candidates(Model model) {
@@ -34,7 +38,7 @@ public class CandidateController {
 
     @GetMapping("/formUpdateCandidate/{candidateId}")
     public String formUpdateCandidate(Model model, @PathVariable("candidateId") int id) {
-        model.addAttribute("candidate", store.getById(id));
+        model.addAttribute("candidate", store.findById(id));
         return "updateCandidate";
     }
 
