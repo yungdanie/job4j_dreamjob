@@ -30,8 +30,6 @@ public class PostStore {
     }
 
     public void update(Post post) {
-        Post old = store.get(post.getId());
-        old.setName(post.getName());
-        old.setDescription(post.getDescription());
+        store.replace(post.getId(), post);
     }
 }
