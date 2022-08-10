@@ -39,14 +39,22 @@
                 Редатирование кандидата.
             </div>
             <div class="card-body">
-                <form th:action="@{/updateCandidate}" method="POST" th:object="${candidate}">
+                <form th:action="@{/updateCandidate}" method="POST" th:object="${candidate}" enctype="multipart/form-data">
                     <input type="hidden" name="id" th:field="*{id}"/>
                     <input type="hidden" name="created" th:field="*{created}"/>
                     <div class="form-group">
                         <label for="name">Имя</label>
                         <input type="text" class="form-control" name="name" id="name" th:field="*{name}">
+                        <br>
                         <label for="description">Описание</label>
                         <input type="text" class="form-control" name="name" id="description" th:field="*{description}">
+                        <br>
+                        <label for="file">Фотография
+                            <input type="file" class="form-control" name="file" id="file">
+                        </label>
+                        <br>
+                        <img th:width="150" th:high="150" th:src="@{|/photoCandidate/${candidate.id}|}"
+                             alt="download...">
                     </div>
                     <button type="submit" class="btn btn-primary">Сохранить</button>
                 </form>

@@ -55,6 +55,10 @@
                 </td>
                 <td th:text="${candidate.description}"></td>
                 <td th:text="${#temporals.format(candidate.created, 'dd-MM-yyyy HH:mm')}"></td>
+                <td>
+                    <img th:width="150" th:high="150" th:src="@{|/photoCandidate/${candidate.id}|}"
+                         alt="download...">
+                </td>
             </tr>
             </tbody>
         </table>

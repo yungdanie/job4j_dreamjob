@@ -9,6 +9,8 @@ public class Candidate {
 
     private LocalDateTime created;
 
+    private byte[] photo;
+
     public Candidate() {
     }
 
@@ -56,4 +58,11 @@ public class Candidate {
         this.created = created;
     }
 
+    public byte[] getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(byte[] photo) {
+        this.photo = photo;
+    }
 }
