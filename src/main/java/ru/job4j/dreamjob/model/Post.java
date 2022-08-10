@@ -15,6 +15,8 @@ public class Post {
 
     private LocalDateTime created;
 
+    private City city;
+
     public Post() {
     }
 
@@ -61,6 +63,14 @@ public class Post {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public City getCity() {
+        return city;
+    }
+
+    public void setCity(City city) {
+        this.city = city;
     }
 
     public boolean isVisible() {
