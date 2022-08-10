@@ -20,15 +20,9 @@ public class PostStore {
     }
 
     public void add(Post post) {
-        int curr;
-        int incrCurr;
-        do {
-            curr = ATOMIC.get();
-            incrCurr = curr + 1;
-        } while (!ATOMIC.compareAndSet(curr, incrCurr));
-        post.setId(incrCurr);
+        post.setId(ATOMIC.incrementAndGet());
         post.setCreated(LocalDateTime.now());
-        store.putIfAbsent(incrCurr, post);
+        store.put(post.getId(), post);
     }
 
     public Post findById(int id) {
