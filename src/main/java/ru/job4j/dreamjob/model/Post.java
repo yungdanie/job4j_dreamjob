@@ -30,6 +30,7 @@ public class Post {
         this.created = created;
     }
 
+    private boolean visible;
     public int getId() {
         return id;
     }
@@ -60,6 +61,14 @@ public class Post {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public boolean isVisible() {
+        return visible;
+    }
+
+    public void setVisible(boolean visible) {
+        this.visible = visible;
     }
 
     @Override
