@@ -45,8 +45,17 @@
                     <div class="form-group">
                         <label for="name">Имя</label>
                         <input type="text" class="form-control" name="name" id="name" th:field="*{name}">
+                        <br>
                         <label for="description">Описание</label>
                         <input type="text" class="form-control" name="name" id="description" th:field="*{description}">
+                        <br>
+                        <label for="city.id">Город</label>
+                        <select class="form-control" id="city.id" name="city.id">
+                            <option th:each="city : ${cities}" th:field="*{city.id}" th:value="${city.id}" th:text="${city.name}"></option>
+                        </select>
+                        <br>
+                        <input type="checkbox" name="visible" id="visible" th:field="*{visible}">
+                        <label for="visible" class="form-check-label">Опубликовать</label>
                     </div>
                     <button type="submit" class="btn btn-primary">Сохранить</button>
                 </form>
