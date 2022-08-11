@@ -17,7 +17,27 @@ public class Post {
 
     private City city;
 
+    private boolean visible;
+
     public Post() {
+    }
+
+    public Post(int id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
+    public Post(int id, String name, City city) {
+        this.id = id;
+        this.name = name;
+        this.city = city;
+    }
+
+    public Post(int id, String name, String description, City city) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.city = city;
     }
 
     public Post(String name, String description) {
@@ -25,14 +45,14 @@ public class Post {
         this.description = description;
     }
 
-    public Post(int id, String name, String description, LocalDateTime created) {
+    public Post(int id, String name, String description, LocalDateTime created, City city, boolean visible) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.created = created;
+        this.city = city;
+        this.visible = visible;
     }
-
-    private boolean visible;
     public int getId() {
         return id;
     }

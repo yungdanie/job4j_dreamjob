@@ -15,11 +15,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class PostController {
 
     private final PostService postService;
-    private final CityService cityService;
 
-    public PostController(PostService postService, CityService cityService) {
+    public PostController(PostService postService) {
         this.postService = postService;
-        this.cityService = cityService;
     }
 
     @GetMapping("/posts")
@@ -30,7 +28,7 @@ public class PostController {
 
     @GetMapping("/formAddPost")
     public String formAddPost(Model model) {
-        model.addAttribute("cities", cityService.getAllCities());
+        model.addAttribute("cities", CityService.getAllCities());
         return "addPost";
     }
 
@@ -43,6 +41,7 @@ public class PostController {
     @GetMapping("/formUpdatePost/{postId}")
     public String formUpdatePost(Model model, @PathVariable("postId") int id) {
         model.addAttribute("post", postService.findById(id));
+        model.addAttribute("cities", CityService.getAllCities());
         return "updatePost";
     }
 
