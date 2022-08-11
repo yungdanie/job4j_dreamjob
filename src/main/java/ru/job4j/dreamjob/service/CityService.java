@@ -10,7 +10,7 @@ import java.util.Map;
 
 @Service
 public class CityService {
-    private final Map<Integer, City> cities = new HashMap<>();
+    private static final Map<Integer, City> cities = new HashMap<>();
 
     public CityService() {
         cities.put(1, new City(1, "Москва"));
@@ -18,11 +18,11 @@ public class CityService {
         cities.put(3, new City(3, "Екб"));
     }
 
-    public List<City> getAllCities() {
+    public static List<City> getAllCities() {
         return new ArrayList<>(cities.values());
     }
 
-    public City findById(int id) {
+    public static City findById(int id) {
         return cities.get(id);
     }
 }
