@@ -61,6 +61,7 @@ public class PostDBStore {
                 }
             }
         } catch (Exception e) {
+
             LOGGER.error("Error:", e);
         }
         return post;
