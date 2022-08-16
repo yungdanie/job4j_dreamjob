@@ -1,10 +1,7 @@
 package ru.job4j.dreamjob.model;
 
-import org.apache.tomcat.jni.Local;
 
 import java.time.LocalDateTime;
-import java.util.Date;
-import java.text.SimpleDateFormat;
 import java.util.Objects;
 
 public class Post {
