@@ -32,7 +32,12 @@
     </div>
     <div class="navbar-expand" id="navBar">
         <div class="navbar-nav">
-            <a class="nav-item nav-link" th:href="@{/formAddUser}">Регистрация</a>
+            <div class="nav-item nav-link">
+                <span th:text="'Гость '"></span>
+                <a th:href="@{/formAddUser}">Регистрация</a>
+                <span th:text=" '|' " ></span>
+                <a th:href="@{/loginPage}">Вход</a>
+            </div>
         </div>
     </div>
 </nav>
