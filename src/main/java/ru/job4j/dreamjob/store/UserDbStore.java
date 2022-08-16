@@ -75,4 +75,22 @@ public class UserDbStore {
         }
         return null;
     }
+
+    public User findByEmailAndPwd(String email, String password) {
+        try (Connection cn = pool.getConnection()) {
+            try (PreparedStatement pr = cn.prepareStatement("select * from users where email = ? AND password = ?")) {
+                pr.setString(1, email);
+                pr.setString(2, password);
+                try (ResultSet result = pr.executeQuery()) {
+                    if (result.next()) {
+                        return new User(result.getInt("id"), result.getString("email"),
+                                result.getString("password"));
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            LOGGER.error("Error:", e);
+        }
+        return null;
+    }
 }
