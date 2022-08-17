@@ -13,6 +13,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Optional;
 
 @Repository @ThreadSafe
 public class UserDbStore {
@@ -41,7 +42,7 @@ public class UserDbStore {
         return collection;
     }
 
-    public User add(User user) {
+    public Optional<User> add(User user) {
         try (Connection cn = pool.getConnection();
              PreparedStatement pr = cn.prepareStatement("INSERT INTO users(email, password) VALUES (?, ?)")) {
              pr.setString(1, user.getEmail());
@@ -54,9 +55,9 @@ public class UserDbStore {
              }
         } catch (SQLException e) {
             LOGGER.error("Error:", e);
-            return null;
+            user = null;
         }
-        return user;
+        return Optional.ofNullable(user);
     }
 
     public User findById(int id) {
