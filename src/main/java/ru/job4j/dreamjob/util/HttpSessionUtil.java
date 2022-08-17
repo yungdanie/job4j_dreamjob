@@ -1,17 +1,15 @@
-package ru.job4j.dreamjob.service;
+package ru.job4j.dreamjob.util;
 
-import org.springframework.stereotype.Service;
 import ru.job4j.dreamjob.model.User;
 
 import javax.servlet.http.HttpSession;
 
-@Service
-public class HttpSessionService {
+public final class HttpSessionUtil {
 
-    public HttpSessionService() {
+    private HttpSessionUtil() {
     }
 
-    public User reg(HttpSession httpSession) {
+    public static User reg(HttpSession httpSession) {
         User user = (User) httpSession.getAttribute("user");
         if (user == null) {
             user = new User();

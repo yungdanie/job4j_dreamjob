@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import ru.job4j.dreamjob.model.Candidate;
 import ru.job4j.dreamjob.service.CandidateService;
-import ru.job4j.dreamjob.service.HttpSessionService;
+import ru.job4j.dreamjob.util.HttpSessionUtil;
 
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
@@ -21,23 +21,21 @@ import java.io.IOException;
 public class CandidateController {
 
     private final CandidateService candidateService;
-    private final HttpSessionService httpSessionService;
 
-    public CandidateController(CandidateService candidateService, HttpSessionService httpSessionService) {
+    public CandidateController(CandidateService candidateService) {
         this.candidateService = candidateService;
-        this.httpSessionService = httpSessionService;
     }
 
     @GetMapping("/candidates")
     public String candidates(Model model, HttpSession session) {
         model.addAttribute("candidates", candidateService.findAll());
-        model.addAttribute("user", httpSessionService.reg(session));
+        model.addAttribute("user", HttpSessionUtil.reg(session));
         return "candidates";
     }
 
     @GetMapping("/formAddCandidate")
     public String addCandidate(Model model, HttpSession session) {
-        model.addAttribute("user", httpSessionService.reg(session));
+        model.addAttribute("user", HttpSessionUtil.reg(session));
         return "addCandidate";
     }
 
@@ -52,7 +50,7 @@ public class CandidateController {
     @GetMapping("/formUpdateCandidate/{candidateId}")
     public String formUpdateCandidate(Model model, @PathVariable("candidateId") int id, HttpSession session) {
         model.addAttribute("candidate", candidateService.findById(id));
-        model.addAttribute("user", httpSessionService.reg(session));
+        model.addAttribute("user", HttpSessionUtil.reg(session));
         return "updateCandidate";
     }
 
